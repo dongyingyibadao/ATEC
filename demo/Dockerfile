@@ -35,7 +35,7 @@ COPY --chown=admin:admin server.py ./solution/
 COPY --chown=admin:admin solution_zero.py ./solution/solution.py
 
 # demo2: RL demo
-# COPY --chown=admin:admin solution_rl.py./solution/solution.py
+# COPY --chown=admin:admin solution_rl.py ./solution/solution.py
 # COPY --chown=admin:admin policy.pt ./solution/
 
 # demo3: ACT demo
