@@ -73,9 +73,9 @@ def play() -> tuple[float, float]:
         use_fabric=not args_cli.disable_fabric
     )
 
-    # TODO: simulate getting action spec from jason string (e.g. from a file or network)
-    # action_spec = solution.get_action_spec() if hasattr(solution, "get_action_spec") else None
-    # action_spec_json = json.dumps(action_spec)
+    # Get action spec from solution and convert to JSON for env config
+    action_spec = solution.get_action_spec() if hasattr(solution, "get_action_spec") else None
+    action_spec_json = json.dumps(action_spec)
 
     # New Feature: apply safe action spec to env config (e.g. for scaling/clipping actions from your solution)
     env_cfg = apply_safe_action_spec(env_cfg, action_spec_json)
