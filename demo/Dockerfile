@@ -18,15 +18,6 @@ RUN chown -R admin:admin /opt/ac2
 ENV PIP_INDEX_URL=https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 ENV PIP_TRUSTED_HOST=mirrors.tuna.tsinghua.edu.cn
 
-# 安装 pydrake 运行时所需的系统库
-# Drake C++ 核心链接了 X11/SM/Xt/Xext/Xrender + OpenGL，缺任何一个 import 就会 crash
-# 参考: https://drake.mit.edu/pip.html
-RUN yum install -y \
-        libX11 libXext libXrender libSM libXt \
-        mesa-libGL mesa-libEGL mesa-libGLU \
-        glib2 \
-    && yum clean all
-
 # 使用 admin 用户运行（不要改）
 USER admin
 
@@ -40,10 +31,10 @@ COPY --chown=admin:admin run.sh ./solution/
 COPY --chown=admin:admin requirements.txt ./solution/
 COPY --chown=admin:admin server.py ./solution/
 
-# Task E: Drake IK classical control pipeline (refactored)
+# Task E: numpy/scipy IK pipeline (no pydrake dependency)
 COPY --chown=admin:admin solution.py ./solution/solution.py
 COPY --chown=admin:admin __init__.py ./solution/__init__.py
-COPY --chown=admin:admin my_refactored ./solution/my_refactored
+COPY --chown=admin:admin my_submission ./solution/my_submission
 COPY --chown=admin:admin vendor ./solution/vendor
 
 # 赋予 run.sh 可执行权限（不要改）

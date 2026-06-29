@@ -1,7 +1,3 @@
 h5py
-fastapi
-uvicorn
-python-multipart
-drake
 scipy
 opencv-python-headless
